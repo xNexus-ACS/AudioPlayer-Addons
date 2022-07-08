@@ -15,7 +15,8 @@ namespace AudioPlayer_Addons
         public string EFBAudioPath { get; set; } = Path.Combine(Paths.Exiled, "Audio", "efb.mp3");
         [Description("Respawning Audio Config")]
         public bool EnableR { get; set; } = true;
-        public string RAudioPath { get; set; } = Path.Combine(Paths.Exiled, "Audio", "respawn.mp3");
+        public string RAudioPathChaos { get; set; } = Path.Combine(Paths.Exiled, "Audio", "respawnchaos.mp3");
+        public string RAudioPathNtf { get; set; } = Path.Combine(Paths.Exiled, "Audio", "respawnntf.mp3");
         [Description("Containing106 Audio Config")]
         public bool EnableContaining106 { get; set; } = true;
         public string Containing106AudioPath { get; set; } = Path.Combine(Paths.Exiled, "Audio", "containing.mp3");

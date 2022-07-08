@@ -1,6 +1,7 @@
 ﻿using AudioPlayer.API;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
+using Respawning;
 
 namespace AudioPlayer_Addons
 {
@@ -23,7 +24,14 @@ namespace AudioPlayer_Addons
             if (plugin.Config.EnableR)
             {
                 Log.Debug("[AudioPlayer-Addons: OnRespawning] Audio Played!", plugin.Config.IsDebugging);
-                AudioController.PlayFromFile(plugin.Config.RAudioPath);
+                if (ev.NextKnownTeam == SpawnableTeamType.NineTailedFox)
+                {
+                    AudioController.PlayFromFile(plugin.Config.RAudioPathNtf);
+                }
+                if (ev.NextKnownTeam == SpawnableTeamType.ChaosInsurgency)
+                {
+                    AudioController.PlayFromFile(plugin.Config.RAudioPathChaos);
+                }
             }
         }
 
@@ -40,7 +48,7 @@ namespace AudioPlayer_Addons
         {
             if (plugin.Config.EnableDying)
             {
-                if (ev.Target.Role.Team == Team.SCP)
+                if (ev.Target.Role.Type == RoleType.Scp049 || ev.Target.Role.Type == RoleType.Scp173 || ev.Target.Role.Type == RoleType.Scp096 || ev.Target.Role.Type == RoleType.Scp93953 || ev.Target.Role.Type == RoleType.Scp93989)
                 {
                     Log.Debug("[AudioPlayer-Addons: OnDying] Audio Played!", plugin.Config.IsDebugging);
                     AudioController.PlayFromFile(plugin.Config.DyingAudioPath);

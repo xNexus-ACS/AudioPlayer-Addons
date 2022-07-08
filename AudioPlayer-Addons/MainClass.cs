@@ -12,7 +12,7 @@ namespace AudioPlayer_Addons
         public override string Author { get; } = "xNexusACS";
         public override string Name { get; } = "AudioPlayer Addons";
         public override string Prefix { get; } = "audioplayer_addons";
-        public override Version Version { get; } = new Version(0, 2, 0);
+        public override Version Version { get; } = new Version(0, 2, 1);
         public override Version RequiredExiledVersion { get; } = new Version(5, 2, 2);
         
         public EventHandlers EventHandlers { get; private set; }
@@ -20,8 +20,11 @@ namespace AudioPlayer_Addons
         public override void OnEnabled()
         {
             if (!Directory.Exists(Path.Combine(Paths.Exiled, "Audio")))
+            {
+                Log.Debug("Successfully created a folder named Audio on the EXILED folder!", Config.IsDebugging);
                 Directory.CreateDirectory($"{Paths.Exiled}/Audio");
-            
+            }
+
             EventHandlers = new EventHandlers(this);
             
             PlayerHandler.EnteringFemurBreaker += EventHandlers.OnEnteringFemurBreaker;
